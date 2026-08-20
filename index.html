@@ -1,0 +1,1098 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>My Profile 💙</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: "Trebuchet MS", Arial, sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #dff7ff, #b9edff, #f4fcff);
+    color: #315b70;
+    padding-bottom: 30px;
+}
+
+/* HEADER */
+
+header {
+    text-align: center;
+    padding: 55px 20px;
+    background: linear-gradient(135deg, #8edcff, #c8f3ff);
+    border-bottom-left-radius: 50px;
+    border-bottom-right-radius: 50px;
+    box-shadow: 0 8px 25px rgba(53, 157, 198, .2);
+}
+
+header h1 {
+    font-size: 42px;
+    color: #176b8c;
+    margin: 10px 0;
+    text-shadow: 2px 2px white;
+}
+
+header p {
+    color: #39758b;
+}
+
+/* TOMBOL EDIT */
+
+.edit-button {
+    margin-top: 20px;
+    padding: 12px 22px;
+    border: none;
+    border-radius: 25px;
+    background: white;
+    color: #2381a5;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(0,0,0,.1);
+}
+
+.edit-button:hover {
+    transform: scale(1.05);
+}
+
+/* CONTAINER */
+
+.container {
+    max-width: 900px;
+    margin: 35px auto;
+    padding: 0 20px;
+}
+
+/* CARD */
+
+.card {
+    background: rgba(255,255,255,.9);
+    border: 3px solid #b7eaff;
+    border-radius: 28px;
+    padding: 28px;
+    margin-bottom: 25px;
+    box-shadow: 0 10px 25px rgba(60,155,195,.13);
+}
+
+.card h2 {
+    color: #2487ad;
+    margin-bottom: 20px;
+}
+
+/* PROFIL */
+
+.profile-box {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.photo-area {
+    text-align: center;
+}
+
+.profile-picture {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background: #d2f5ff;
+    border: 6px solid white;
+    box-shadow: 0 5px 20px rgba(60,155,195,.25);
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 55px;
+}
+
+.profile-picture img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: none;
+}
+
+.change-photo {
+    display: inline-block;
+    margin-top: 12px;
+    padding: 9px 16px;
+    border-radius: 20px;
+    background: #8edcff;
+    color: #176b8c;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.change-photo:hover {
+    background: #6ed2f7;
+}
+
+.info {
+    line-height: 2;
+    font-size: 17px;
+}
+
+.info b {
+    color: #247c9d;
+}
+
+/* LIST */
+
+.list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.item {
+    background: #e8f9ff;
+    padding: 15px 20px;
+    border-radius: 18px;
+    border-left: 6px solid #79d5f5;
+}
+
+/* KEGIATAN */
+
+.activity {
+    background: #e8f9ff;
+    padding: 18px;
+    border-radius: 20px;
+    margin-bottom: 12px;
+}
+
+.activity h3 {
+    color: #247c9d;
+    margin-bottom: 5px;
+}
+
+/* KELEBIHAN */
+
+.skills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.skill {
+    background: #d8f5ff;
+    padding: 12px 17px;
+    border-radius: 25px;
+    border: 2px solid #a9e7fa;
+}
+
+/* HOBI */
+
+.hobbies {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+}
+
+.hobby {
+    background: #e5f8ff;
+    border: 2px solid #b8eafa;
+    border-radius: 22px;
+    padding: 20px;
+    width: 150px;
+    text-align: center;
+}
+
+.hobby .emoji {
+    font-size: 35px;
+    margin-bottom: 8px;
+}
+
+/* MOTO */
+
+.motto {
+    text-align: center;
+    background: linear-gradient(135deg, #8bdcff, #d0f5ff);
+}
+
+.motto p {
+    font-size: 22px;
+    font-weight: bold;
+    font-style: italic;
+    line-height: 1.6;
+}
+
+/* MODAL EDIT */
+
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(30,100,130,.45);
+    z-index: 100;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.modal-box {
+    max-width: 650px;
+    margin: 30px auto;
+    background: white;
+    border-radius: 30px;
+    padding: 25px;
+}
+
+.modal-box h2 {
+    color: #2487ad;
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-top: 12px;
+    margin-bottom: 5px;
+    color: #28738f;
+    font-weight: bold;
+}
+
+input,
+textarea {
+    width: 100%;
+    padding: 11px;
+    border: 2px solid #b7eaff;
+    border-radius: 12px;
+    outline: none;
+}
+
+textarea {
+    min-height: 80px;
+    resize: vertical;
+}
+
+.save-button {
+    margin-top: 20px;
+    padding: 12px 22px;
+    border: none;
+    border-radius: 25px;
+    background: #70d3f7;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close-button {
+    margin-top: 20px;
+    margin-left: 8px;
+    padding: 12px 22px;
+    border: none;
+    border-radius: 25px;
+    background: #e5f8ff;
+    color: #28738f;
+    cursor: pointer;
+}
+
+/* FOOTER */
+
+footer {
+    text-align: center;
+    color: #518196;
+    padding: 20px;
+}
+
+/* HP */
+
+@media(max-width:600px) {
+
+    header h1 {
+        font-size: 32px;
+    }
+
+    .profile-box {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .info {
+        text-align: left;
+    }
+
+    .profile-picture {
+        width: 135px;
+        height: 135px;
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+
+<header>
+
+    <div>☁️ Hello, welcome to my profile! ☁️</div>
+
+    <h1>My Profile 💙</h1>
+
+    <p>✨ Sedikit cerita tentang saya ✨</p>
+
+    <button class="edit-button" onclick="openEditor()">
+        ✏️ Edit Profil
+    </button>
+
+</header>
+
+
+<main class="container">
+
+
+<!-- PROFIL -->
+
+<section class="card">
+
+    <h2>🩵 Tentang Saya</h2>
+
+    <div class="profile-box">
+
+        <div class="photo-area">
+
+            <div class="profile-picture">
+
+                <img id="profilePhoto">
+
+                <div id="defaultPhoto">
+                    👧🏻
+                </div>
+
+            </div>
+
+            <label for="photoInput" class="change-photo">
+                📸 Ganti Foto
+            </label>
+
+            <input
+                type="file"
+                id="photoInput"
+                accept="image/*"
+                style="display:none"
+            >
+
+        </div>
+
+
+        <div class="info">
+
+            <p>
+                <b>Nama:</b>
+                <span id="showNama">Wulan Azalia Putri</span>
+            </p>
+
+            <p>
+                <b>Kelas:</b>
+                <span id="showKelas">XI TJKT 3</span>
+            </p>
+
+            <p>
+                <b>No. Absen:</b>
+                <span id="showAbsen">33</span>
+            </p>
+
+            <p>
+                <b>Sekolah:</b>
+                <span id="showSekolah">SMK NEGERI 1 BLADO</span>
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- PENDIDIKAN -->
+
+<section class="card">
+
+    <h2>🎓 Riwayat Pendidikan</h2>
+
+    <div class="list" id="showPendidikan">
+
+        <div class="item">
+            🧸 TK — RA UMRI
+        </div>
+
+        <div class="item">
+            📚 SD — MI ISLAMIYAH TAMBAKBOYO
+        </div>
+
+        <div class="item">
+            🏫 SMP — SMP NEGERI 3 REBAN
+        </div>
+
+        <div class="item">
+            🎓 SMA/SMK — SMK NEGERI 1 BLADO
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- KEGIATAN -->
+
+<section class="card">
+
+    <h2>🌷 Kegiatan Saya Saat Ini</h2>
+
+    <div id="showKegiatan">
+
+        <div class="activity">
+            <h3>🏫 Sekolah</h3>
+            <p>Sedang menempuh pendidikan.</p>
+        </div>
+
+        <div class="activity">
+            <h3>📖 Belajar</h3>
+            <p>Belajar berbagai hal baru.</p>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- KELEBIHAN -->
+
+<section class="card">
+
+    <h2>⭐ Kelebihan Saya</h2>
+
+    <div class="skills" id="showKelebihan">
+
+        <div class="skill">💗 Ramah dan Mudah beradaptasi</div>
+
+    </div>
+
+</section>
+
+
+<!-- HOBI -->
+
+<section class="card">
+
+    <h2>🎀 Hobi Saya</h2>
+
+    <div class="hobbies" id="showHobi">
+
+        <div class="hobby">
+            <div class="emoji">🎧</div>
+          Mendengarkan Musik
+        </div>
+
+        <div class="hobby">
+            <div class="emoji">📖</div>
+            Membaca
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- MOTO -->
+
+<section class="card motto">
+
+    <h2>☁️ Moto Hidup ☁️</h2>
+
+    <p id="showMoto">
+        "Jangan takut gagal, karena
+      setiap kegagalan adalah
+      bagian dari proses menuju 
+      kesuksesan.." ✨
+    </p>
+
+</section>
+
+
+</main>
+
+
+<footer>
+
+    Made with 💙 and ✨ by
+    <b id="footerNama">wulan</b>
+
+    <br><br>
+
+    © 2026 My Cute Profile
+
+</footer>
+
+
+<!-- ==========================
+     MODAL EDIT PROFIL
+========================== -->
+
+<div class="modal" id="editor">
+
+    <div class="modal-box">
+
+        <h2>✏️ Edit Profil Kamu</h2>
+
+
+        <label>Nama</label>
+
+        <input
+            id="inputNama"
+            placeholder="Masukkan nama"
+        >
+
+
+        <label>Kelas</label>
+
+        <input
+            id="inputKelas"
+            placeholder="Contoh: 9A"
+        >
+
+
+        <label>No. Absen</label>
+
+        <input
+            id="inputAbsen"
+            placeholder="Contoh: 15"
+        >
+
+
+        <label>Sekolah</label>
+
+        <input
+            id="inputSekolah"
+            placeholder="Nama sekolah"
+        >
+
+
+        <label>Riwayat Pendidikan</label>
+
+        <textarea
+            id="inputPendidikan"
+            placeholder="Contoh:
+TK - TK Melati
+SD - SDN 1
+SMP - SMPN 1"
+        ></textarea>
+
+
+        <label>Kegiatan Saat Ini</label>
+
+        <textarea
+            id="inputKegiatan"
+            placeholder="Contoh:
+🏫 Sekolah
+📖 Belajar
+🎨 Menggambar"
+        ></textarea>
+
+
+        <label>Kelebihan</label>
+
+        <textarea
+            id="inputKelebihan"
+            placeholder="Contoh:
+💗 Ramah
+✨ Kreatif
+📚 Rajin"
+        ></textarea>
+
+
+        <label>Hobi</label>
+
+        <textarea
+            id="inputHobi"
+            placeholder="Contoh:
+🎧 Mendengarkan musik
+📖 Membaca
+🎨 Menggambar"
+        ></textarea>
+
+
+        <label>Moto Hidup</label>
+
+        <textarea
+            id="inputMoto"
+            placeholder="Tulis moto hidup kamu"
+        ></textarea>
+
+
+        <button
+            class="save-button"
+            onclick="saveProfile()"
+        >
+            💾 Simpan Profil
+        </button>
+
+
+        <button
+            class="close-button"
+            onclick="closeEditor()"
+        >
+            ✖ Tutup
+        </button>
+
+    </div>
+
+</div>
+
+
+<script>
+
+/* ==========================
+   FOTO PROFIL
+========================== */
+
+const photoInput =
+    document.getElementById("photoInput");
+
+const profilePhoto =
+    document.getElementById("profilePhoto");
+
+const defaultPhoto =
+    document.getElementById("defaultPhoto");
+
+
+photoInput.addEventListener("change", function() {
+
+    const file = this.files[0];
+
+    if (!file) return;
+
+    const reader = new FileReader();
+
+    reader.onload = function(event) {
+
+        profilePhoto.src =
+            event.target.result;
+
+        profilePhoto.style.display =
+            "block";
+
+        defaultPhoto.style.display =
+            "none";
+
+        localStorage.setItem(
+            "profilePhoto",
+            event.target.result
+        );
+
+    };
+
+    reader.readAsDataURL(file);
+
+});
+
+
+/* LOAD FOTO */
+
+const savedPhoto =
+    localStorage.getItem("profilePhoto");
+
+if (savedPhoto) {
+
+    profilePhoto.src =
+        savedPhoto;
+
+    profilePhoto.style.display =
+        "block";
+
+    defaultPhoto.style.display =
+        "none";
+}
+
+
+/* ==========================
+   BUKA EDITOR
+========================== */
+
+function openEditor() {
+
+    document.getElementById("editor")
+        .style.display = "block";
+
+}
+
+
+/* ==========================
+   TUTUP EDITOR
+========================== */
+
+function closeEditor() {
+
+    document.getElementById("editor")
+        .style.display = "none";
+
+}
+
+
+/* ==========================
+   SIMPAN PROFIL
+========================== */
+
+function saveProfile() {
+
+    const nama =
+        document.getElementById("inputNama").value;
+
+    const kelas =
+        document.getElementById("inputKelas").value;
+
+    const absen =
+        document.getElementById("inputAbsen").value;
+
+    const sekolah =
+        document.getElementById("inputSekolah").value;
+
+    const pendidikan =
+        document.getElementById("inputPendidikan").value;
+
+    const kegiatan =
+        document.getElementById("inputKegiatan").value;
+
+    const kelebihan =
+        document.getElementById("inputKelebihan").value;
+
+    const hobi =
+        document.getElementById("inputHobi").value;
+
+    const moto =
+        document.getElementById("inputMoto").value;
+
+
+    /* NAMA */
+
+    if (nama) {
+
+        document.getElementById("showNama")
+            .textContent = nama;
+
+        document.getElementById("footerNama")
+            .textContent = nama;
+
+        localStorage.setItem(
+            "nama",
+            nama
+        );
+    }
+
+
+    /* KELAS */
+
+    if (kelas) {
+
+        document.getElementById("showKelas")
+            .textContent = kelas;
+
+        localStorage.setItem(
+            "kelas",
+            kelas
+        );
+    }
+
+
+    /* ABSEN */
+
+    if (absen) {
+
+        document.getElementById("showAbsen")
+            .textContent = absen;
+
+        localStorage.setItem(
+            "absen",
+            absen
+        );
+    }
+
+
+    /* SEKOLAH */
+
+    if (sekolah) {
+
+        document.getElementById("showSekolah")
+            .textContent = sekolah;
+
+        localStorage.setItem(
+            "sekolah",
+            sekolah
+        );
+    }
+
+
+    /* PENDIDIKAN */
+
+    if (pendidikan) {
+
+        const data =
+            pendidikan.split("\n");
+
+        document.getElementById(
+            "showPendidikan"
+        ).innerHTML = "";
+
+        data.forEach(function(item) {
+
+            if (item.trim() !== "") {
+
+                const div =
+                    document.createElement("div");
+
+                div.className =
+                    "item";
+
+                div.textContent =
+                    "🎓 " + item;
+
+                document.getElementById(
+                    "showPendidikan"
+                ).appendChild(div);
+
+            }
+
+        });
+
+        localStorage.setItem(
+            "pendidikan",
+            pendidikan
+        );
+    }
+
+
+    /* KEGIATAN */
+
+    if (kegiatan) {
+
+        const data =
+            kegiatan.split("\n");
+
+        document.getElementById(
+            "showKegiatan"
+        ).innerHTML = "";
+
+        data.forEach(function(item) {
+
+            if (item.trim() !== "") {
+
+                const div =
+                    document.createElement("div");
+
+                div.className =
+                    "activity";
+
+                div.innerHTML =
+                    "<p>" + item + "</p>";
+
+                document.getElementById(
+                    "showKegiatan"
+                ).appendChild(div);
+
+            }
+
+        });
+
+        localStorage.setItem(
+            "kegiatan",
+            kegiatan
+        );
+    }
+
+
+    /* KELEBIHAN */
+
+    if (kelebihan) {
+
+        const data =
+            kelebihan.split("\n");
+
+        document.getElementById(
+            "showKelebihan"
+        ).innerHTML = "";
+
+        data.forEach(function(item) {
+
+            if (item.trim() !== "") {
+
+                const div =
+                    document.createElement("div");
+
+                div.className =
+                    "skill";
+
+                div.textContent =
+                    item;
+
+                document.getElementById(
+                    "showKelebihan"
+                ).appendChild(div);
+
+            }
+
+        });
+
+        localStorage.setItem(
+            "kelebihan",
+            kelebihan
+        );
+    }
+
+
+    /* HOBI */
+
+    if (hobi) {
+
+        const data =
+            hobi.split("\n");
+
+        document.getElementById(
+            "showHobi"
+        ).innerHTML = "";
+
+        data.forEach(function(item) {
+
+            if (item.trim() !== "") {
+
+                const div =
+                    document.createElement("div");
+
+                div.className =
+                    "hobby";
+
+                div.innerHTML =
+                    '<div class="emoji">🎀</div>' +
+                    item;
+
+                document.getElementById(
+                    "showHobi"
+                ).appendChild(div);
+
+            }
+
+        });
+
+        localStorage.setItem(
+            "hobi",
+            hobi
+        );
+    }
+
+
+    /* MOTO */
+
+    if (moto) {
+
+        document.getElementById(
+            "showMoto"
+        ).textContent =
+            '"' + moto + '" ✨';
+
+        localStorage.setItem(
+            "moto",
+            moto
+        );
+    }
+
+
+    alert("💙 Profil berhasil disimpan!");
+
+    closeEditor();
+
+}
+
+
+/* ==========================
+   LOAD DATA TERSIMPAN
+========================== */
+
+window.addEventListener("load", function() {
+
+    const nama =
+        localStorage.getItem("nama");
+
+    const kelas =
+        localStorage.getItem("kelas");
+
+    const absen =
+        localStorage.getItem("absen");
+
+    const sekolah =
+        localStorage.getItem("sekolah");
+
+    const moto =
+        localStorage.getItem("moto");
+
+
+    if (nama) {
+
+        document.getElementById("showNama")
+            .textContent = nama;
+
+        document.getElementById("footerNama")
+            .textContent = nama;
+    }
+
+
+    if (kelas) {
+
+        document.getElementById("showKelas")
+            .textContent = kelas;
+    }
+
+
+    if (absen) {
+
+        document.getElementById("showAbsen")
+            .textContent = absen;
+    }
+
+
+    if (sekolah) {
+
+        document.getElementById("showSekolah")
+            .textContent = sekolah;
+    }
+
+
+    if (moto) {
+
+        document.getElementById("showMoto")
+            .textContent =
+            '"' + moto + '" ✨';
+    }
+
+
+    /* ISI FORM EDITOR */
+
+    document.getElementById("inputNama").value =
+        nama || "";
+
+    document.getElementById("inputKelas").value =
+        kelas || "";
+
+    document.getElementById("inputAbsen").value =
+        absen || "";
+
+    document.getElementById("inputSekolah").value =
+        sekolah || "";
+
+    document.getElementById("inputMoto").value =
+        moto || "";
+
+});
+
+</script>
+
+</body>
+</html>
