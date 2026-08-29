@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>My Photo Album 💙</title>
+
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: "Trebuchet MS", Arial, sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #dff7ff, #b9edff, #f4fcff);
+    color: #315b70;
+    padding-bottom: 30px;
+    overflow-x: hidden;
+}
+
+/* HEADER */
+header {
+    text-align: center;
+    padding: 50px 20px;
+    background: linear-gradient(135deg, #8edcff, #c8f3ff);
+    border-bottom-left-radius: 50px;
+    border-bottom-right-radius: 50px;
+    box-shadow: 0 8px 25px rgba(53,157,198,.2);
+}
+
+header h1 {
+    font-size: 42px;
+    color: #176b8c;
+    margin: 10px 0;
+    text-shadow: 2px 2px white;
+    animation: wiggle 3s infinite;
+}
+
+@keyframes wiggle {
+    0%, 100% {
+        transform: rotate(0);
+    }
+
+    50% {
+        transform: rotate(2deg);
+    }
+}
+
+/* CONTAINER */
+.container {
+    max-width: 1000px;
+    margin: 35px auto;
+    padding: 0 20px;
+}
+
+/* CARD */
+.card {
+    background: rgba(255,255,255,.92);
+    border: 3px solid #b7eaff;
+    border-radius: 28px;
+    padding: 28px;
+    box-shadow: 0 10px 25px rgba(60,155,195,.13);
+}
+
+.card h2 {
+    text-align: center;
+    color: #2487ad;
+    margin-bottom: 10px;
+}
+
+.description {
+    text-align: center;
+    margin: 15px 0 25px;
+}
+
+/* MODE PEMILIK */
+.owner-area {
+    text-align: center;
+    margin: 15px 0;
+}
+
+.owner-button {
+    border: none;
+    background: #70d3f7;
+    color: white;
+    padding: 12px 22px;
+    border-radius: 25px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 5px 12px rgba(60,155,195,.2);
+}
+
+.owner-button:hover {
+    transform: scale(1.05);
+}
+
+.owner-status {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #518196;
+}
+
+/* ALBUM FOTO */
+.album {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+}
+
+/* KOTAK FOTO */
+.photo-slot {
+    position: relative;
+    aspect-ratio: 1 / 1;
+    background: #e8f9ff;
+    border: 2px dashed #8edcff;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 5px 12px rgba(60,155,195,.15);
+    transition: .3s;
+}
+
+/* FOTO */
+.photo-slot img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: none;
+}
+
+/* TULISAN KOTAK */
+.placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #4d94ad;
+    text-align: center;
+    font-size: 13px;
+}
+
+.placeholder .icon {
+    font-size: 30px;
+    margin-bottom: 5px;
+}
+
+/* INPUT FOTO */
+.photo-input {
+    display: none;
+}
+
+/* TOMBOL HAPUS */
+.delete-button {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    width: 28px;
+    height: 28px;
+    border: none;
+    border-radius: 50%;
+    background: white;
+    color: #e35d6a;
+    font-weight: bold;
+    cursor: pointer;
+    display: none;
+    z-index: 5;
+}
+
+/* SAAT MODE PEMILIK AKTIF */
+.owner-active .photo-slot {
+    cursor: pointer;
+}
+
+.owner-active .photo-slot:hover {
+    transform: scale(1.05) rotate(1deg);
+}
+
+/* TOMBOL KEMBALI */
+.button-area {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.back-button {
+    display: inline-block;
+    padding: 13px 25px;
+    border-radius: 25px;
+    background: #70d3f7;
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+/* HP */
+@media(max-width:700px) {
+    .album {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media(max-width:450px) {
+    .album {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+
+    header h1 {
+        font-size: 32px;
+    }
+
+    .card {
+        padding: 15px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div>📸 Welcome to my memories! 📸</div>
+    <h1>My Photo Album 💙</h1>
+    <p>✨ Kumpulan foto dan kenangan saya ✨</p>
+</header>
+
+<main class="container">
+
+<section class="card">
+
+    <h2>🩵 My Memories</h2>
+
+    <!-- TOMBOL MODE PEMILIK -->
+    <div class="owner-area">
+
+        <button class="owner-button" id="ownerButton">
+            🔒 Mode Pemilik
+        </button>
+
+        <div class="owner-status" id="ownerStatus">
+            Album hanya bisa diedit oleh pemilik 💙
+        </div>
+
+    </div>
+
+    <p class="description">
+        Kumpulan momen kecil yang menjadi kenangan besar ☁️💙
+    </p>
+
+    <!-- ALBUM -->
+    <div class="album" id="album">
+
+        <div class="photo-slot">
+            <input type="file" class="photo-input" accept="image/*">
+            <img>
+            <div class="placeholder">
+                <div class="icon">📷</div>
+                Tambah Foto
+            </div>
+            <button type="button" class="delete-button">✕</button>
+        </div>
+
+        <div class="photo-slot">
+            <input type="file" class="photo-input" accept="image/*">
+            <img>
+            <div class="placeholder">
+                <div class="icon">📸</div>
+                Tambah Foto
+            </div>
+            <button type="button" class="delete-button">✕</button>
+        </div>
+
+        <div class="photo-slot">
+            <input type="file" class="photo-input" accept="image/*">
+            <img>
+            <div class="placeholder">
+                <div class="icon">🌷</div>
+                Tambah Foto
+            </div>
+            <button type="button" class="delete-button">✕</button>
+        </div>
+
+        <div class="photo-slot">
+            <input type="file" class="photo-input" accept="image/*">
+            <img>
+            <div class="placeholder">
+                <div class="icon">☁️</div>
+                Tambah Foto
+            </div>
+            <button type="button" class="delete-button">✕</button>
+        </div>
+
+        <div class="photo-slot">
+            <input type="file" class="photo-input" accept="image/*">
+            <img>
+            <div class="placeholder">
+                <div class="icon">🎀</div>
+                Tambah Foto
+            </div>
+            <button type="button" class="delete-button">✕</button>
+        </div>
+
+        <div class="photo-slot">
+            <input type="file" class="photo-input" accept="image/*">
+            <img>
+            <div class="placeholder">
+                <div class="icon">✨</div>
+                Tambah Foto
+            </div>
+            <button type="button" class="delete-button">✕</button>
+        </div>
+
+        <div class="photo-slot">
+            <input type="file" class="photo-input" accept="image/*">
+            <img>
+            <div class="placeholder">
+                <div class="icon">🦋</div>
+                Tambah Foto
+            </div>
+            <button type="button" class="delete-button">✕</button>
+        </div>
+
+        <div class="photo-slot">
+            <input type="file" class="photo-input" accept="image/*">
+            <img>
+            <div class="placeholder">
+                <div class="icon">💙</div>
+                Tambah Foto
+            </div>
+            <button type="button" class="delete-button">✕</button>
+        </div>
+
+        <div class="photo-slot">
+            <input type="file" class="photo-input" accept="image/*">
+            <img>
+            <div class="placeholder">
+                <div class="icon">🌸</div>
+                Tambah Foto
+            </div>
+            <button type="button" class="delete-button">✕</button>
+        </div>
+
+        <div class="photo-slot">
+            <input type="file" class="photo-input" accept="image/*">
+            <img>
+            <div class="placeholder">
+                <div class="icon">⭐</div>
+                Tambah Foto
+            </div>
+            <button type="button" class="delete-button">✕</button>
+        </div>
+
+        <div class="photo-slot">
+            <input type="file" class="photo-input" accept="image/*">
+            <img>
+            <div class="placeholder">
+                <div class="icon">🌈</div>
+                Tambah Foto
+            </div>
+            <button type="button" class="delete-button">✕</button>
+        </div>
+
+        <div class="photo-slot">
+            <input type="file" class="photo-input" accept="image/*">
+            <img>
+            <div class="placeholder">
+                <div class="icon">🩵</div>
+                Tambah Foto
+            </div>
+            <button type="button" class="delete-button">✕</button>
+        </div>
+
+    </div>
+
+    <div class="button-area">
+        <a href="index.html" class="back-button">
+            ← Kembali ke Profil 💙
+        </a>
+    </div>
+
+</section>
+
+</main>
+
+<script>
+
+let ownerMode = false;
+
+/* GANTI PASSWORD DI SINI */
+const PASSWORD_PEMILIK = "0830";
+
+
+const ownerButton = document.getElementById("ownerButton");
+const ownerStatus = document.getElementById("ownerStatus");
+const album = document.getElementById("album");
+
+
+/* MODE PEMILIK */
+
+ownerButton.addEventListener("click", function() {
+
+    if (!ownerMode) {
+
+        const password = prompt("Masukkan password pemilik 🔒");
+
+        if (password === PASSWORD_PEMILIK) {
+
+            ownerMode = true;
+
+            album.classList.add("owner-active");
+
+            ownerButton.textContent =
+                "🔓 Mode Edit Aktif";
+
+            ownerStatus.textContent =
+                "Kamu sekarang bisa menambah, mengganti, dan menghapus foto 💙";
+
+            alert("💙 Mode pemilik berhasil dibuka!");
+
+        } else {
+
+            alert("❌ Password salah!");
+
+        }
+
+    } else {
+
+        ownerMode = false;
+
+        album.classList.remove("owner-active");
+
+        ownerButton.textContent =
+            "🔒 Mode Pemilik";
+
+        ownerStatus.textContent =
+            "Album hanya bisa diedit oleh pemilik 💙";
+
+        document.querySelectorAll(".delete-button").forEach(function(button) {
+            button.style.display = "none";
+        });
+
+    }
+
+});
+
+
+/* FOTO */
+
+const slots = document.querySelectorAll(".photo-slot");
+
+
+slots.forEach(function(slot) {
+
+    const input = slot.querySelector(".photo-input");
+    const image = slot.querySelector("img");
+    const placeholder = slot.querySelector(".placeholder");
+    const deleteButton = slot.querySelector(".delete-button");
+
+
+    /* KLIK KOTAK FOTO */
+
+    slot.addEventListener("click", function(e) {
+
+        if (e.target.classList.contains("delete-button")) {
+            return;
+        }
+
+        if (!ownerMode) {
+
+            alert("🔒 Foto hanya bisa diubah oleh pemilik.");
+
+            return;
+        }
+
+        input.click();
+
+    });
+
+
+    /* PILIH FOTO */
+
+    input.addEventListener("change", function() {
+
+        const file = input.files[0];
+
+        if (!file) return;
+
+        if (!file.type.startsWith("image/")) {
+            alert("Pilih file foto yaa 💙");
+            return;
+        }
+
+        const reader = new FileReader();
+
+        reader.onload = function(e) {
+
+            image.src = e.target.result;
+
+            image.style.display = "block";
+
+            placeholder.style.display = "none";
+
+            deleteButton.style.display = "block";
+
+        };
+
+        reader.readAsDataURL(file);
+
+    });
+
+
+    /* HAPUS FOTO */
+
+    deleteButton.addEventListener("click", function(e) {
+
+        e.preventDefault();
+        e.stopPropagation();
+
+        if (!ownerMode) {
+            return;
+        }
+
+        image.src = "";
+
+        image.style.display = "none";
+
+        placeholder.style.display = "flex";
+
+        deleteButton.style.display = "none";
+
+        input.value = "";
+
+    });
+
+});
+
+</script>
+
+</body>
+</html>

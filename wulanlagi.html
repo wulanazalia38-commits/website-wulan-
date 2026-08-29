@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>My Profile 💙</title>
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+ font-family:"Trebuchet MS",Arial;
+ background:linear-gradient(135deg,#dff7ff,#bdeaff,#fff0f7);
+ color:#426b7c;
+}
+nav{
+ position:sticky;top:0;z-index:10;
+ background:white;padding:12px;text-align:center;
+ box-shadow:0 3px 15px #8bcfe544;
+}
+nav button{
+ border:0;border-radius:25px;padding:11px 20px;
+ margin:4px;background:#e5f8ff;color:#287c9c;
+ font-weight:bold;cursor:pointer;
+}
+nav button:hover,nav .active{background:#70d3f7;color:white}
+
+.page{display:none;animation:fade .4s}
+.page.active{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+header{
+ text-align:center;padding:45px 15px;
+ background:linear-gradient(135deg,#8edcff,#d8f7ff);
+ border-radius:0 0 45px 45px;
+}
+h1{color:#176b8c;font-size:38px;text-shadow:2px 2px white}
+header p{margin-top:8px}
+
+main{max-width:850px;width:92%;margin:25px auto}
+.card{
+ background:#ffffffee;border:3px solid #b7eaff;
+ border-radius:25px;padding:22px;margin-bottom:18px;
+ box-shadow:0 8px 20px #5caac022;
+}
+h2{color:#2487ad;margin-bottom:15px}
+
+.profile{
+ display:flex;align-items:center;gap:25px;
+}
+.profile img{
+ width:150px;height:150px;object-fit:cover;
+ border-radius:50%;border:6px solid white;
+ outline:4px solid #8edcff;
+}
+.info{line-height:2;font-size:17px}
+.info b{color:#247c9d}
+
+.tags,.hobbies,.facts{
+ display:flex;flex-wrap:wrap;gap:10px;
+}
+.tag,.hobby,.fact{
+ background:#e8f9ff;padding:12px 16px;
+ border-radius:20px;border:2px solid #b7eaff;
+ transition:.3s;
+}
+.tag:hover,.hobby:hover,.fact:hover{
+ transform:scale(1.06) rotate(1deg);
+}
+
+.hobby{text-align:center;flex:1;min-width:120px}
+.hobby span,.fact span{display:block;font-size:30px;margin-bottom:5px}
+
+.activity{
+ background:#fff0f7;padding:14px;
+ border-radius:18px;margin:8px 0;
+}
+.quote{
+ text-align:center;padding:25px;
+ border-radius:22px;
+ background:linear-gradient(135deg,#b9ecff,#ffe4f0);
+ font-size:20px;font-weight:bold;font-style:italic;
+}
+
+.timeline{border-left:4px solid #9edff5;padding-left:20px}
+.timeline div{
+ background:#eafaff;padding:14px;
+ border-radius:18px;margin:12px 0;
+}
+
+.facts .fact{
+ flex:1 1 180px;
+ text-align:center;
+ background:#fff4dc;
+}
+.facts .fact:nth-child(even){background:#ffeaf3}
+
+.back{
+ display:block;margin:20px auto;
+ border:0;border-radius:25px;padding:12px 22px;
+ background:#70d3f7;color:white;
+ font-weight:bold;cursor:pointer;
+}
+.back:hover{transform:scale(1.05)}
+
+footer{text-align:center;padding:25px}
+
+@media(max-width:600px){
+ h1{font-size:30px}
+ .profile{flex-direction:column;text-align:center}
+ .profile img{width:135px;height:135px}
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVIGASI -->
+<nav>
+<button class="active" onclick="showPage('profil',this)">🏠 Profil</button>
+<button onclick="showPage('cerita',this)">✨ Cerita & Fun Facts</button>
+</nav>
+
+
+<!-- ================= HALAMAN 1 ================= -->
+
+<section id="profil" class="page active">
+
+<header>
+<div>☁️ 🩵 ☁️</div>
+<h1>My Profile 💙</h1>
+<p>✨ Sedikit cerita tentang diriku ✨</p>
+</header>
+
+<main>
+
+<div class="card">
+<h2>🩵 Data Diri</h2>
+
+<div class="profile">
+
+<!--
+=========================================
+GANTI FOTO DI SINI
+
+Contoh:
+foto.jpg
+wulan.jpg
+profil.png
+
+Pastikan file foto berada di folder
+yang sama dengan index.html.
+=========================================
+-->
+<img src="foto.jpg" alt="Foto Profil">
+
+<div class="info">
+<p><b>Nama:</b> WULAN AZALIA PUTRI</p>
+<p><b>Kelas:</b> XI TKJ 3</p>
+<p><b>No. Absen:</b> 33</p>
+<p><b>Sekolah:</b> SMK NEGERI 1 BLADO</p>
+</div>
+
+</div>
+</div>
+
+
+<div class="card">
+<h2>🎓 Riwayat Pendidikan</h2>
+
+<div class="timeline">
+<div>🧸 <b>TK</b><br>RA UMRI</div>
+<div>📚 <b>SD</b><br>MI ISLAMIYAH TAMBAKBOYO</div>
+<div>🏫 <b>SMP</b><br>SMP NEGERI 3 REBAN</div>
+<div>🎓 <b>Sekarang</b><br>SMK NEGERI 1 BLADO</div>
+</div>
+</div>
+
+
+<div class="card">
+<h2>⭐ Kelebihan</h2>
+
+<div class="tags">
+<div class="tag">💗 Ramah</div>
+<div class="tag">✨ Mudah beradaptasi</div>
+</div>
+</div>
+
+
+<div class="card">
+<h2>🎀 Hobi</h2>
+
+<div class="hobbies">
+<div class="hobby"><span>🎧</span>Musik</div>
+<div class="hobby"><span>📖</span>Membaca</div>
+</div>
+</div>
+
+
+<div class="card">
+<h2>🌷 Kegiatan Saat Ini</h2>
+
+<div class="activity">🏫 <b>Sekolah</b> — belajar dan mengikuti kegiatan sekolah.</div>
+<div class="activity">📖 <b>Belajar</b> — mempelajari hal-hal baru.</div>
+<div class="activity">✨ <b>Mengembangkan Diri</b> — mengembangkan bakat dan kemampuan.</div>
+</div>
+
+
+<div class="card">
+<h2>☁️ Motto Hidup</h2>
+
+<div class="quote">
+“Jangan takut untuk bermimpi, karena setiap langkah kecil membawa kita lebih dekat kepada impian.” ✨
+</div>
+</div>
+
+
+<button class="back" onclick="showPage('cerita',document.querySelectorAll('nav button')[1])">
+Lanjut ke Cerita → ✨
+</button>
+
+</main>
+</section>
+
+
+<!-- ================= HALAMAN 2 ================= -->
+
+<section id="cerita" class="page">
+
+<header>
+<div>🌷 ☁️ ✨ ☁️ 🌷</div>
+<h1>Perjalanan Hidupku ✨</h1>
+<p>💙 Cerita kecil dan fun facts 💙</p>
+</header>
+
+<main>
+
+<div class="card">
+<h2>🌸 Timeline Hidupku</h2>
+
+<div class="timeline">
+
+<div>
+🧸 <b>Masa Kecil</b><br>
+Saat masih kecil, aku suka bermain, dan menghabiskan waktu bersama keluarga..
+</div>
+
+<div>
+📚 <b>Masuk SD</b><br>
+Aku mulai mengenal banyak teman, belajar membaca, menulis, berhitung, dan mencoba berbagai kegiatan baru.
+</div>
+
+<div>
+🏫 <b>Masuk SMP</b><br>
+Masa SMP menjadi pengalaman baru. Aku belajar menjadi lebih mandiri dan mulai mengenal banyak hal.
+</div>
+
+<div>
+🌟 <b>Momen Berkesan</b><br>
+Salah satu hal yang berkesan adalah ketika bisa berkumpul bersama teman, keluarga, dan menciptakan kenangan bersama.
+</div>
+
+</div>
+</div>
+
+
+<div class="card">
+<h2>💙 Fun Facts Tentang Aku</h2>
+
+< class="facts">
+
+<div class="fact">
+<span>🎧</span>
+<b>Suka Musik</b>
+<p>Aku suka mendengarkan musik.</p>
+</div>
+
+<div class="fact">
+<span> 🌷</span>
+<b>Suka Merajut</b>
+<p>Aku suka merajut saat sedang santai.</p>
+</div>
+  
+<div class="fact">
+<span>🌸</span>
+<b>Suka Hal lucu</b>
+<p>Suka benda dengan desain lucu dan warna pastel terutama BIRU.</p>
+</div>
+
+<div class="fact">
+<span>📸</span>
+<b>Suka menyimpan kenangan</b>
+<p>Suka mengabadikan momen seru menjadi kenangan yang menyenangkan.</p>
+</div>
+
+<div class="fact">
+<span>🦋</span>
+<b>Suka Belajar</b>
+<p>Aku senang menemukan pengetahua dan pengalaman baru.</p>
+</div>
+
+<div class="fact">
+<span>⭐</span>
+<b>Punya Impian</b>
+<p>Aku ingin terus berkembang dan mencapai impian sedikit demi sedikit.</p>
+</div>
+  
+</>
+
+
+<button class="back" onclick="showPage('profil',document.querySelectorAll('nav button')[0])">
+← Kembali ke Profil 💙
+</button>
+
+</main>
+</section>
+
+
+<footer>
+Made with 💙 ☁️ 🌷 ✨
+</footer>
+
+
+<script>
+function showPage(id,button){
+
+ document.querySelectorAll(".page")
+ .forEach(p=>p.classList.remove("active"));
+
+ document.getElementById(id)
+ .classList.add("active");
+
+ document.querySelectorAll("nav button")
+ .forEach(b=>b.classList.remove("active"));
+
+ button.classList.add("active");
+
+ window.scrollTo(0,0);
+}
+</script>
+
+</body>
+</html>

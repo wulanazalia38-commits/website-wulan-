@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>My Profile 💙</title>
+
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #dff7ff, #b9edff, #f5fcff);
+    color: #315b70;
+    min-height: 100vh;
+}
+
+/* HALAMAN */
+
+.page {
+    min-height: 100vh;
+    padding-bottom: 30px;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* HEADER */
+
+header {
+    text-align: center;
+    padding: 45px 20px;
+    background: linear-gradient(135deg, #8edcff, #c8f3ff);
+    border-radius: 0 0 45px 45px;
+}
+
+header h1 {
+    color: #176b8c;
+    margin: 10px 0;
+    font-size: 38px;
+}
+
+/* CONTAINER */
+
+.container {
+    max-width: 900px;
+    margin: auto;
+    padding: 25px 18px;
+}
+
+/* CARD */
+
+.card {
+    background: white;
+    border: 3px solid #b7eaff;
+    border-radius: 25px;
+    padding: 25px;
+    margin-bottom: 20px;
+    box-shadow: 0 8px 20px rgba(60,155,195,.15);
+}
+
+.card h2 {
+    color: #2487ad;
+    margin-bottom: 18px;
+}
+
+/* TOMBOL */
+
+button {
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.owner-button {
+    background: white;
+    color: #247c9d;
+    padding: 13px 22px;
+    border-radius: 25px;
+    border: 2px solid #8edcff;
+    margin: 20px auto;
+    display: block;
+}
+
+.next-button {
+    background: #54bfe5;
+    color: white;
+    padding: 15px 25px;
+    border-radius: 30px;
+}
+
+.back-button {
+    background: white;
+    color: #247c9d;
+    border: 2px solid #8edcff;
+    padding: 15px 25px;
+    border-radius: 30px;
+}
+
+.navigation {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    align-items: center;
+    margin-top: 25px;
+}
+
+/* PROFIL */
+
+.profile-box {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+.profile-picture {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    overflow: hidden;
+    background: #d2f5ff;
+    border: 6px solid white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 55px;
+}
+
+.profile-picture img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: none;
+}
+
+.change-profile {
+    display: none;
+    margin-top: 12px;
+    padding: 10px 15px;
+    background: #8edcff;
+    color: #176b8c;
+    border-radius: 20px;
+}
+
+.photo-area {
+    text-align: center;
+}
+
+.info {
+    line-height: 2;
+}
+
+/* LIST */
+
+.item,
+.activity {
+    background: #e8f9ff;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 15px;
+}
+
+.skills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.skill {
+    padding: 12px 16px;
+    background: #d8f5ff;
+    border-radius: 25px;
+}
+
+.hobbies {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.hobby {
+    background: #e8f9ff;
+    padding: 15px;
+    border-radius: 20px;
+    min-width: 120px;
+    text-align: center;
+}
+
+/* ALBUM */
+
+.album {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+}
+
+.photo-slot {
+    position: relative;
+    aspect-ratio: 1 / 1;
+    background: #e8f9ff;
+    border: 3px dashed #8edcff;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.photo-slot.owner-active {
+    cursor: pointer;
+}
+
+.photo-slot img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: none;
+}
+
+.placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.delete-button {
+    display: none;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: white;
+    color: red;
+}
+
+/* STATUS */
+
+.status {
+    text-align: center;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+/* HP */
+
+@media(max-width: 600px) {
+    .profile-box {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .album {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media(max-width: 400px) {
+    .album {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+</style>
+</head>
+
+<body>
+
+
+<!-- =========================
+     HALAMAN 1
+========================= -->
+
+<div id="profilePage" class="page">
+
+<header>
+    <div>☁️ Welcome to my profile ☁️</div>
+    <h1>My Profile 💙</h1>
+    <p>✨ Sedikit cerita tentang saya ✨</p>
+</header>
+
+<div class="container">
+
+    <!-- MODE PEMILIK -->
+
+    <button id="ownerButton" class="owner-button">
+        🔒 Mode Pemilik
+    </button>
+
+    <div id="ownerStatus" class="status">
+        Website terkunci 🔒
+    </div>
+
+
+    <!-- PROFIL -->
+
+    <div class="card">
+
+        <h2>🩵 Tentang Saya</h2>
+
+        <div class="profile-box">
+
+            <div class="photo-area">
+
+                <div class="profile-picture">
+
+                    <img id="profileImage">
+
+                    <div id="defaultProfile">
+                        👧🏻
+                    </div>
+
+                </div>
+
+                <button id="changeProfileButton" class="change-profile">
+                    📸 Ganti Foto
+                </button>
+
+            </div>
+
+            <div class="info">
+                <p><b>Nama:</b> WULAN AZALIA PUTRI</p>
+                <p><b>Kelas:</b> XI TKJ 3</p>
+                <p><b>No. Absen:</b> 33</p>
+                <p><b>Sekolah:</b> SMK NEGERI 1 BLADO</p>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- PENDIDIKAN -->
+
+    <div class="card">
+
+        <h2>🎓 Riwayat Pendidikan</h2>
+
+        <div class="item">🧸 TK — Nama RA UMRI</div>
+        <div class="item">📚 SD — Nama MI ISMLAMIYAH TAMBAKBOTO</div>
+        <div class="item">🏫 SMP — SMP NEGERI 3 REBAN</div>
+        <div class="item">🎓 SMA/SMK — SMK NEGERI 1 BLADO</div>
+
+    </div>
+
+
+    <!-- KEGIATAN -->
+
+    <div class="card">
+
+        <h2>🌷 Kegiatan Saat Ini</h2>
+
+        <div class="activity">🏫 Sekolah</div>
+        <div class="activity">📖 Belajar</div>
+
+    </div>
+
+
+    <!-- KELEBIHAN -->
+
+    <div class="card">
+
+        <h2>⭐ Kelebihan Saya</h2>
+
+        <div class="skills">
+            <div class="skill">💗 Mudah beadaptasi</div>
+        </div>
+
+    </div>
+
+
+    <!-- HOBI -->
+
+    <div class="card">
+
+        <h2>🎀 Hobi Saya</h2>
+
+        <div class="hobbies">
+            <div class="hobby">🎧<br>Musik</div>
+            <div class="hobby">📖<br>Membaca</div>
+        </div>
+
+    </div>
+
+
+    <!-- MOTO -->
+
+    <div class="card">
+
+        <h2>☁️ Moto Hidup</h2>
+
+        <p>
+            "Jangan takut bermimpi, karena setiap langkah kecil
+            akan membawamu lebih dekat kepada impian." ✨
+        </p>
+
+    </div>
+
+
+    <!-- TOMBOL ALBUM -->
+
+    <div class="navigation">
+
+        <span>Halaman 1 dari 2</span>
+
+        <button id="goAlbumButton" class="next-button">
+            Album Foto 📸 ➜
+        </button>
+
+    </div>
+
+</div>
+
+</div>
+
+
+<!-- =========================
+     HALAMAN 2
+========================= -->
+
+<div id="albumPage" class="page hidden">
+
+<header>
+    <div>📸 My Memories 📸</div>
+    <h1>My Photo Album 💙</h1>
+    <p>✨ Foto-foto kenanganku ✨</p>
+</header>
+
+<div class="container">
+
+    <div id="albumStatus" class="status">
+        Album terkunci 🔒
+    </div>
+
+    <div class="card">
+
+        <h2>🩵 My Memories</h2>
+
+        <p style="text-align:center; margin-bottom:20px;">
+            Foto-foto kecil seperti album kenangan 💙
+        </p>
+
+
+        <div class="album" id="album">
+
+
+            <div class="photo-slot">
+                <img>
+                <div class="placeholder">📷<br>Foto 1</div>
+                <button class="delete-button">✕</button>
+            </div>
+
+            <div class="photo-slot">
+                <img>
+                <div class="placeholder">📸<br>Foto 2</div>
+                <button class="delete-button">✕</button>
+            </div>
+
+            <div class="photo-slot">
+                <img>
+                <div class="placeholder">🌷<br>Foto 3</div>
+                <button class="delete-button">✕</button>
+            </div>
+
+            <div class="photo-slot">
+                <img>
+                <div class="placeholder">☁️<br>Foto 4</div>
+                <button class="delete-button">✕</button>
+            </div>
+
+            <div class="photo-slot">
+                <img>
+                <div class="placeholder">🎀<br>Foto 5</div>
+                <button class="delete-button">✕</button>
+            </div>
+
+            <div class="photo-slot">
+                <img>
+                <div class="placeholder">✨<br>Foto 6</div>
+                <button class="delete-button">✕</button>
+            </div>
+
+            <div class="photo-slot">
+                <img>
+                <div class="placeholder">🦋<br>Foto 7</div>
+                <button class="delete-button">✕</button>
+            </div>
+
+            <div class="photo-slot">
+                <img>
+                <div class="placeholder">💙<br>Foto 8</div>
+                <button class="delete-button">✕</button>
+            </div>
+
+        </div>
+
+
+        <div class="navigation">
+
+            <button id="backProfileButton" class="back-button">
+                ← Kembali ke Profil
+            </button>
+
+            <span>Halaman 2 dari 2</span>
+
+        </div>
+
+    </div>
+
+</div>
+
+</div>
+
+
+<!-- INPUT FOTO -->
+
+<input
+    type="file"
+    id="profileInput"
+    accept="image/*"
+    style="display:none"
+>
+
+<input
+    type="file"
+    id="albumInput"
+    accept="image/*"
+    style="display:none"
+>
+
+
+<script>
+
+/* =========================
+   PENGATURAN
+========================= */
+
+const OWNER_PIN = "0830";
+
+let ownerMode = false;
+
+let selectedSlot = null;
+
+
+/* =========================
+   AMBIL ELEMENT
+========================= */
+
+const profilePage =
+    document.getElementById("profilePage");
+
+const albumPage =
+    document.getElementById("albumPage");
+
+const ownerButton =
+    document.getElementById("ownerButton");
+
+const goAlbumButton =
+    document.getElementById("goAlbumButton");
+
+const backProfileButton =
+    document.getElementById("backProfileButton");
+
+const changeProfileButton =
+    document.getElementById("changeProfileButton");
+
+const profileInput =
+    document.getElementById("profileInput");
+
+const albumInput =
+    document.getElementById("albumInput");
+
+const profileImage =
+    document.getElementById("profileImage");
+
+const defaultProfile =
+    document.getElementById("defaultProfile");
+
+const ownerStatus =
+    document.getElementById("ownerStatus");
+
+const albumStatus =
+    document.getElementById("albumStatus");
+
+const slots =
+    document.querySelectorAll(".photo-slot");
+
+
+/* =========================
+   TOMBOL KE ALBUM
+========================= */
+
+goAlbumButton.onclick = function() {
+
+    profilePage.classList.add("hidden");
+
+    albumPage.classList.remove("hidden");
+
+    window.scrollTo(0, 0);
+
+};
+
+
+/* =========================
+   TOMBOL KEMBALI
+========================= */
+
+backProfileButton.onclick = function() {
+
+    albumPage.classList.add("hidden");
+
+    profilePage.classList.remove("hidden");
+
+    window.scrollTo(0, 0);
+
+};
+
+
+/* =========================
+   MODE PEMILIK
+========================= */
+
+ownerButton.onclick = function() {
+
+    if (ownerMode === true) {
+
+        ownerMode = false;
+
+        updateOwnerMode();
+
+        return;
+
+    }
+
+    const pin =
+        prompt("Masukkan PIN Pemilik 🔐");
+
+    if (pin === OWNER_PIN) {
+
+        ownerMode = true;
+
+        updateOwnerMode();
+
+        alert("Mode Pemilik aktif 👑💙");
+
+    } else {
+
+        if (pin !== null) {
+            alert("PIN salah 😭");
+        }
+
+    }
+
+};
+
+
+/* =========================
+   UPDATE MODE PEMILIK
+========================= */
+
+function updateOwnerMode() {
+
+    if (ownerMode === true) {
+
+        ownerButton.textContent =
+            "🔓 Keluar Mode Pemilik";
+
+        ownerStatus.textContent =
+            "Mode Pemilik aktif 👑";
+
+        albumStatus.textContent =
+            "Mode Pemilik aktif 👑 Klik kotak foto untuk mengganti foto.";
+
+        changeProfileButton.style.display =
+            "inline-block";
+
+        slots.forEach(function(slot) {
+
+            slot.classList.add("owner-active");
+
+            const image =
+                slot.querySelector("img");
+
+            const deleteButton =
+                slot.querySelector(".delete-button");
+
+            if (image.src) {
+                deleteButton.style.display = "block";
+            }
+
+        });
+
+    } else {
+
+        ownerButton.textContent =
+            "🔒 Mode Pemilik";
+
+        ownerStatus.textContent =
+            "Website terkunci 🔒";
+
+        albumStatus.textContent =
+            "Album terkunci 🔒";
+
+        changeProfileButton.style.display =
+            "none";
+
+        slots.forEach(function(slot) {
+
+            slot.classList.remove("owner-active");
+
+            const deleteButton =
+                slot.querySelector(".delete-button");
+
+            deleteButton.style.display =
+                "none";
+
+        });
+
+    }
+
+}
+
+
+/* =========================
+   FOTO PROFIL
+========================= */
+
+changeProfileButton.onclick = function() {
+
+    if (ownerMode === false) {
+        return;
+    }
+
+    profileInput.click();
+
+};
+
+
+profileInput.onchange = function() {
+
+    const file = this.files[0];
+
+    if (!file) return;
+
+    const reader = new FileReader();
+
+    reader.onload = function(event) {
+
+        profileImage.src =
+            event.target.result;
+
+        profileImage.style.display =
+            "block";
+
+        defaultProfile.style.display =
+            "none";
+
+        localStorage.setItem(
+            "profilePhoto",
+            event.target.result
+        );
+
+    };
+
+    reader.readAsDataURL(file);
+
+};
+
+
+/* =========================
+   LOAD FOTO PROFIL
+========================= */
+
+const savedProfile =
+    localStorage.getItem("profilePhoto");
+
+if (savedProfile) {
+
+    profileImage.src =
+        savedProfile;
+
+    profileImage.style.display =
+        "block";
+
+    defaultProfile.style.display =
+        "none";
+
+}
+
+
+/* =========================
+   FOTO ALBUM
+========================= */
+
+slots.forEach(function(slot, index) {
+
+    const image =
+        slot.querySelector("img");
+
+    const placeholder =
+        slot.querySelector(".placeholder");
+
+    const deleteButton =
+        slot.querySelector(".delete-button");
+
+
+    /* LOAD FOTO */
+
+    const savedPhoto =
+        localStorage.getItem("albumPhoto" + index);
+
+    if (savedPhoto) {
+
+        image.src =
+            savedPhoto;
+
+        image.style.display =
+            "block";
+
+        placeholder.style.display =
+            "none";
+
+    }
+
+
+    /* KLIK KOTAK FOTO */
+
+    slot.onclick = function(event) {
+
+        if (event.target === deleteButton) {
+            return;
+        }
+
+        if (ownerMode === false) {
+
+            alert(
+                "Album terkunci 🔒\nMasuk Mode Pemilik dulu!"
+            );
+
+            return;
+
+        }
+
+        selectedSlot = {
+            slot: slot,
+            index: index
+        };
+
+        albumInput.click();
+
+    };
+
+
+    /* HAPUS FOTO */
+
+    deleteButton.onclick = function(event) {
+
+        event.stopPropagation();
+
+        if (ownerMode === false) {
+            return;
+        }
+
+        image.src = "";
+
+        image.style.display =
+            "none";
+
+        placeholder.style.display =
+            "flex";
+
+        deleteButton.style.display =
+            "none";
+
+        localStorage.removeItem(
+            "albumPhoto" + index
+        );
+
+    };
+
+});
+
+
+/* =========================
+   MASUKKAN FOTO ALBUM
+========================= */
+
+albumInput.onchange = function() {
+
+    const file = this.files[0];
+
+    if (!file) return;
+
+    if (!selectedSlot) return;
+
+
+    const reader = new FileReader();
+
+
+    reader.onload = function(event) {
+
+        const image =
+            selectedSlot.slot.querySelector("img");
+
+        const placeholder =
+            selectedSlot.slot.querySelector(".placeholder");
+
+        const deleteButton =
+            selectedSlot.slot.querySelector(".delete-button");
+
+
+        image.src =
+            event.target.result;
+
+        image.style.display =
+            "block";
+
+        placeholder.style.display =
+            "none";
+
+        deleteButton.style.display =
+            "block";
+
+
+        localStorage.setItem(
+            "albumPhoto" + selectedSlot.index,
+            event.target.result
+        );
+
+    };
+
+
+    reader.readAsDataURL(file);
+
+    albumInput.value = "";
+
+};
+
+
+</script>
+
+</body>
+</html>
